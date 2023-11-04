@@ -1,4 +1,7 @@
 <?php
+// Koneksi DB
+// $servername sesuai dengan nama mysql di docker-compose.yml
+//
 $servername = "mysql-db"; // MySQL server address
 $username = "root"; // MySQL username
 $password = ""; // MySQL password

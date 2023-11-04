@@ -1,3 +1,8 @@
+<?php
+/* 
+File ini merupakan halaman awal yang berisi table dengan data2 buku yang berada dalam database mysql.
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,16 +22,17 @@
         </tr>
 
         <?php
+        // menambahkan koneksi.php ke index.php
         include("koneksi.php");
         ?>
         <?php
 
-        // Fetch data from the database
+        // Ambil data di DB
         $sql = "SELECT id, book_name FROM books";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Output data of each row
+            // tampilkan data diidalam DB
             while($row = $result->fetch_assoc()) {
                 echo "<tr>
                         <td>".$row["id"]."</td>
@@ -39,7 +45,6 @@
             echo "<tr><td colspan='4'>No records found</td></tr>";
         }
 
-        // Close connection
         $conn->close();
         ?>
     </table>

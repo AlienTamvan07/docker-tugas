@@ -2,12 +2,14 @@
 require('koneksi.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the book name from the form
+    // Ambil nama buku dari form
     $bookName = $_POST["book_name"];
 
-    // Insert the new book record into the database
+    // Insert book name ke database
     $sql = "INSERT INTO books (book_name) VALUES ('$bookName')";
 
+
+    // Kondisional, jika true makan tampilkan pesan, jika error tampilkan error
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
     } else {

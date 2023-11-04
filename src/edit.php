@@ -2,12 +2,15 @@
 require("koneksi.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Ambil nama buku dan id dari form
 
     $bookName = $_POST["book_name"];
     $bookId = $_POST["id"];
-
+ 
+    // Query update
     $sql = "UPDATE books SET book_name='$bookName' WHERE id=$bookId";
 
+    // Kondisional, jika berhasil munculkan pesan, jika error munculkan error
     if ($conn->query($sql) === TRUE) {
         echo "Record updated successfully";
         echo "<br>< <a href=\"index.php\">Home</a>";
@@ -16,12 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
+// Jika terdapat param ?id= di url, maka :
 if (isset($_GET["id"])) {
     $bookId = $_GET["id"];
 
+    // Cari buku dengan id tersebut
     $sql = "SELECT id, book_name FROM books WHERE id=$bookId";
     $result = $conn->query($sql);
 
+    // Kondisional, jika buku ada dalam database, maka tampilkan form, jika tidak, tampilkan error
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $bookId = $row["id"];
